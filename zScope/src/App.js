@@ -34,7 +34,7 @@ function App() {
       if (matchingRow) {
         setCompatibility(matchingRow[2]); // Chemistry値を設定
       } else {
-        setCompatibility('No data available'); // マッチするデータがない場合
+        setCompatibility('??'); // マッチするデータがない場合
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -57,7 +57,7 @@ function App() {
             <option key={index} value={sign}>{sign}</option>
           ))}
         </select>
-
+              <br></br>
         <label>相手の星座：</label>
         <select value={partnerSign} onChange={(e) => handleSignChange(e, setPartnerSign)}>
           <option value="">選択してください</option>
@@ -68,7 +68,7 @@ function App() {
           ))}
         </select>
       </div>
-      <button onClick={calculateCompatibility}>相性をチェックする</button>
+      <button onClick={calculateCompatibility}>相性をチェック</button>
       {compatibility !== null && (
         <p>あなたと相手の相性は {compatibility}% です！</p>
       )}
