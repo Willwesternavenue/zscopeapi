@@ -1,29 +1,73 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-// credential.json をインポート
-//import credential from './credential.json';
-
 function App() {
+
+  const dogImages = {
+    'ボーダー・コリー': 'https://example.com/husky.jpg',
+    'イングリッシュ・ブルドッグ': 'https://example.com/bulldog.jpg',
+    'パピヨン': 'https://example.com/dachshund.jpg',
+    'ラブラドール・レトリーバー': 'https://example.com/dachshund.jpg',
+    'シベリアン・ハスキー': 'https://example.com/dachshund.jpg',
+    'ジャーマン・シェパード': 'https://example.com/dachshund.jpg',
+    'カヴァリア・キング・チャールズ・スパニエル': 'https://example.com/dachshund.jpg',
+    'ドーベルマン': 'https://example.com/dachshund.jpg',
+    'オーストラリアン・シェパード': 'https://example.com/dachshund.jpg',
+    'セント・バーナード': 'https://example.com/dachshund.jpg',
+    'ダルメシアン': 'https://example.com/dachshund.jpg',
+    'ゴールデン・レトリバー': 'https://example.com/golden_retriever.jpg',
+  };
+  
   const [mySign, setMySign] = useState('');
   const [partnerSign, setPartnerSign] = useState('');
   const [compatibility, setCompatibility] = useState(null);
-  const [error, setError] = useState(''); 
+  const [dogType, setDogType] = useState('');
+  const [dogCharacter, setDogCharacter] = useState('');
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    calculateCompatibility(); // コンポーネントがマウントされたときにデータを取得する
-  }, []); // 空の依存リストを渡すことで、コンポーネントがマウントされたときにのみ呼び出されるようにする
+    if (mySign) {
+      fetchDogInfo();
+    }
+    calculateCompatibility();
+  }, [mySign, partnerSign]);
 
   const handleSignChange = (event, setter) => {
     setter(event.target.value);
   };
 
-  const calculateCompatibility = async () => {
-    setError(''); // エラー状態をリセット
+  const fetchDogInfo = async () => {
     try {
       const apiKey = 'AIzaSyBdSdUJ2SnudvSs0FTYe2aLugIYToCvLOU';
       const spreadsheetId = '1_ny_jpo6gXKmSTMTaQT1o6RdEKR7UzrLA82aFc_1HV8';
+      const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet2!A2:C13?key=${apiKey}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      const matchingRow = data.values.find(row => row[0] === mySign);
+      if (matchingRow) {
+        setDogType(matchingRow[1]);
+        setDogCharacter(matchingRow[2]);
+      }
+    } catch (error) {
+      console.error('Error fetching dog data:', error);
+      setError('Failed to load dog data.');
+    }
+    const fetchDogInfo = async () => {
+      // ここにAPIから犬のデータを取得する処理を記述
+      // デモのため直接犬の種類を設定
+      const dogType = 'シベリアン・ハスキー'; // 仮の値
+      setDogType(dogType);
+      setDogCharacter('活発で友好的');
+    };
+  };
 
+  const calculateCompatibility = async () => {
+    setError('');
+    try {
+      const apiKey = 'AIzaSyBdSdUJ2SnudvSs0FTYe2aLugIYToCvLOU';
+      const spreadsheetId = '1_ny_jpo6gXKmSTMTaQT1o6RdEKR7UzrLA82aFc_1HV8';
       const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet1!A2:C13?key=${apiKey}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -37,12 +81,10 @@ function App() {
         setCompatibility('??'); // マッチするデータがない場合
       }
     } catch (error) {
-      console.error('Error fetching data:', error);
-      setError('Failed to load data.'); // エラー状態を設定
+      console.error('Error fetching compatibility data:', error);
+      setError('Failed to load compatibility data.');
     }
   };
-  
-  //console.log('API Key Base64:', process.env.REACT_APP_GOOGLE_SHEETS_API_KEY_BASE64);
 
   return (
     <div className="App">
@@ -51,26 +93,35 @@ function App() {
         <label>あなたの星座：</label>
         <select value={mySign} onChange={(e) => handleSignChange(e, setMySign)}>
           <option value="">選択してください</option>
-          {/* 12星座のリストをマッピングして選択肢を作成 */}
-          {['牡羊座', '牡牛座', '双子座', '蟹座', '獅子座', '乙女座',
-            '天秤座', '蠍座', '射手座', '山羊座', '水瓶座', '魚座'].map((sign, index) => (
+          {['牡羊座', '牡牛座', '双子座', '蟹座', '獅子座', '乙女座', '天秤座', '蠍座', '射手座', '山羊座', '水瓶座', '魚座'].map((sign, index) => (
             <option key={index} value={sign}>{sign}</option>
           ))}
         </select>
-              <br></br>
+        <br></br>
         <label>相手の星座：</label>
         <select value={partnerSign} onChange={(e) => handleSignChange(e, setPartnerSign)}>
           <option value="">選択してください</option>
-          {/* 同様に12星座のリストをマッピング */}
-          {['牡羊座', '牡牛座', '双子座', '蟹座', '獅子座', '乙女座',
-            '天秤座', '蠍座', '射手座', '山羊座', '水瓶座', '魚座'].map((sign, index) => (
+          {['牡羊座', '牡牛座', '双子座', '蟹座', '獅子座', '乙女座', '天秤座', '蠍座', '射手座', '山羊座', '水瓶座', '魚座'].map((sign, index) => (
             <option key={index} value={sign}>{sign}</option>
           ))}
         </select>
       </div>
+      <br></br>
+      {dogType && (
+        <p><br></br><b>あなたの星座を犬に例えると:<br></br> {dogType}</b></p>
+      )}
+      {dogCharacter && (
+        <>
+        <p><b>性格を一言でいうと:<br></br> {dogCharacter}</b></p>
+        <img src={dogImages[dogType]} alt={`画像：${dogType}`} />
+        </>
+      )}
+      <br></br>
       <button onClick={calculateCompatibility}>相性をチェック</button>
+
+
       {compatibility !== null && (
-        <p>あなたと相手の相性は {compatibility}% です！</p>
+        <p><br></br><b>あなたと相手の相性は {compatibility}% です！</b></p>
       )}
       {error && (
         <p className="error">エラー: {error}</p> // エラーメッセージを表示
@@ -80,4 +131,3 @@ function App() {
 }
 
 export default App;
- 
