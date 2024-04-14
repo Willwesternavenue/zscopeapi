@@ -4,18 +4,18 @@ import './App.css';
 function App() {
 
   const dogImages = {
-    'ボーダー・コリー': 'https://example.com/husky.jpg',
-    'イングリッシュ・ブルドッグ': 'https://example.com/bulldog.jpg',
-    'パピヨン': 'https://example.com/dachshund.jpg',
-    'ラブラドール・レトリーバー': 'https://example.com/dachshund.jpg',
-    'シベリアン・ハスキー': 'https://example.com/dachshund.jpg',
-    'ジャーマン・シェパード': 'https://example.com/dachshund.jpg',
-    'カヴァリア・キング・チャールズ・スパニエル': 'https://example.com/dachshund.jpg',
-    'ドーベルマン': 'https://example.com/dachshund.jpg',
-    'オーストラリアン・シェパード': 'https://example.com/dachshund.jpg',
-    'セント・バーナード': 'https://example.com/dachshund.jpg',
-    'ダルメシアン': 'https://example.com/dachshund.jpg',
-    'ゴールデン・レトリバー': 'https://example.com/golden_retriever.jpg',
+    'ボーダー・コリー': '/Collie.jpg',
+    'イングリッシュ・ブルドッグ': '/Fbulldog.jpg',
+    'パピヨン': '/Papillon.jpg',
+    'ラブラドール・レトリバー': '/Retriever.jpg',
+    'シベリアン・ハスキー': '/Huskey.jpg',
+    'ジャーマン・シェパード': '/Shepherd.jpg',
+    'カヴァリア・キング・チャールズ・スパニエル': '/Spaniel.jpg',
+    'ドーベルマン': '/Doberman.jpg',
+    'オーストラリアン・シェパード': 'Ashepherd.jpg',
+    'セント・バーナード': '/Bernard.jpg',
+    'ダルメシアン': '/Dalmatian.jpg',
+    'ゴールデン・レトリバー': '/Gretriever.jpg',
   };
   
   const [mySign, setMySign] = useState('');
@@ -49,18 +49,14 @@ function App() {
       if (matchingRow) {
         setDogType(matchingRow[1]);
         setDogCharacter(matchingRow[2]);
+      } else {
+        setDogType('');
+        setDogCharacter('');
       }
     } catch (error) {
       console.error('Error fetching dog data:', error);
       setError('Failed to load dog data.');
     }
-    const fetchDogInfo = async () => {
-      // ここにAPIから犬のデータを取得する処理を記述
-      // デモのため直接犬の種類を設定
-      const dogType = 'シベリアン・ハスキー'; // 仮の値
-      setDogType(dogType);
-      setDogCharacter('活発で友好的');
-    };
   };
 
   const calculateCompatibility = async () => {
