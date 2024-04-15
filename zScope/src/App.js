@@ -144,7 +144,7 @@ function App() {
       {error && (
         <p className="error">エラー: {error}</p> 
       )}
-      <br />
+      <br /><br />
       <button onClick={calculateCompatibility}>相性をチェック</button>
       {compatibility && (
        <p><br /><b>あなたと相手の相性は {compatibility}% です！</b></p>
