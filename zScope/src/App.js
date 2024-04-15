@@ -20,6 +20,7 @@ function App() {
   const [mySign, setMySign] = useState('');
   const [partnerSign, setPartnerSign] = useState('');
   const [compatibility, setCompatibility] = useState(null);
+  const [advisory, setAdvisory] = useState('');
   const [dogType1, setDogType1] = useState('');
   const [dogType2, setDogType2] = useState('');
   const [dogCharacter1, setDogCharacter1] = useState('');
@@ -88,16 +89,35 @@ function App() {
       const matchingRow = values.find(row => row[0] === mySign && row[1] === partnerSign);
       console.log('Matching row:', matchingRow); // デバッグ情報を出力
       if (matchingRow) {
-        setCompatibility(matchingRow[2]); 
+        const percentage = parseInt(matchingRow[2], 10); // Make sure to parse the string as an integer
+        setCompatibility(percentage);
+        setAdvisory(getCompatibilityAdvisory(percentage)); // Set the advisory message
       } else {
-        setCompatibility('??'); 
+        setCompatibility('??');
+        setAdvisory('Compatibility could not be determined.');
       }
     } catch (error) {
       console.error('Error fetching compatibility data:', error);
       setError('Failed to load compatibility data.');
     }
   };
+  const getCompatibilityAdvisory = (percentage) => {
+    if (percentage >= 90) {
+      return "二人の相性は最高です！";
+    } else if (percentage >= 80) {
+      return "二人の相性は抜群です！";
+    } else if (percentage >= 70) {
+      return "二人の相性はまずまずです";
+    } else if (percentage >= 60) {
+      return "二人の相性は平均以上";
+    } else if (percentage >= 50) {
+      return "相性はそれほどですが、努力次第！";
 
+    } else {
+      return "相性はあまり良くないかもしれません";
+    }
+  };
+  
   return (
     <div className="App">
       <h1>犬型星座占い</h1>
@@ -146,11 +166,14 @@ function App() {
       )}
       <br /><br />
       <button onClick={calculateCompatibility}>相性をチェック</button>
-      {compatibility && (
-       <p><br /><b>あなたと相手の相性は {compatibility}% です！</b></p>
-   )}
-    </div>
+      {
+      compatibility && (
+      <>
+       <p><b>あなたと相手の相性は {compatibility}% です！</b></p>
+       <p>{advisory}</p> {/* This line displays the advisory message */}
+      </>
+      )}
+      </div>
   );
 }
-
 export default App;
