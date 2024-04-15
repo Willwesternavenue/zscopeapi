@@ -20,8 +20,10 @@ function App() {
   const [mySign, setMySign] = useState('');
   const [partnerSign, setPartnerSign] = useState('');
   const [compatibility, setCompatibility] = useState(null);
-  const [dogType, setDogType] = useState('');
-  const [dogCharacter, setDogCharacter] = useState('');
+  const [dogType1, setDogType1] = useState('');
+  const [dogType2, setDogType2] = useState('');
+  const [dogCharacter1, setDogCharacter1] = useState('');
+  const [dogCharacter2, setDogCharacter2] = useState('');
   const [error, setError] = useState('');
   console.log('mySign:', mySign);
   console.log('partnerSign:', partnerSign);
@@ -29,10 +31,13 @@ function App() {
 
   useEffect(() => {
     if (mySign) {
-      fetchDogInfo();
+      fetchDogInfo(mySign, setDogType1, setDogCharacter1);
     }
-  }, [mySign]); // mySignが変更されたときに実行
-
+    if (partnerSign) {
+      fetchDogInfo(partnerSign, setDogType2, setDogCharacter2);
+    }
+  }, [mySign, partnerSign]); // mySign または partnerSign が変更されたときに実行
+  
 
   const handleSignChange = (event, setter) => {
     setter(event.target.value);
@@ -40,7 +45,7 @@ function App() {
     setCompatibility(null); // Reset compatibility when changing signs
   };
 
-  const fetchDogInfo = async () => {
+  const fetchDogInfo = async (sign, setDogType, setDogCharacter) => {
     try {
       const apiKey = 'AIzaSyBdSdUJ2SnudvSs0FTYe2aLugIYToCvLOU';
       const spreadsheetId = '1_ny_jpo6gXKmSTMTaQT1o6RdEKR7UzrLA82aFc_1HV8';
@@ -49,7 +54,7 @@ function App() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      const matchingRow = data.values.find(row => row[0] === mySign);
+      const matchingRow = data.values.find(row => row[0] === sign);
       if (matchingRow) {
         setDogType(matchingRow[1]);
         setDogCharacter(matchingRow[2]);
@@ -105,13 +110,13 @@ function App() {
           ))}
         </select>
       </div>      
-      {dogType && (
-        <p><br /><b>あなたの星座を犬に例えると:<br></br> {dogType}</b></p>
+      {dogType1 && (
+        <p><br /><b>あなたの星座を犬に例えると:<br></br> {dogType1}</b></p>
       )}
-      {dogCharacter && (
+      {dogCharacter1 && (
           <>
-        <p><b>性格を一言でいうと:<br></br> {dogCharacter}</b></p>
-        <img src={dogImages[dogType]} alt={`画像：${dogType}`} className="dog-image" />
+        <p><b>性格を一言でいうと:<br></br> {dogCharacter1}</b></p>
+        <img src={dogImages[dogType1]} alt={`画像：${dogType1}`} className="dog-image" />
         </>
       )}
       {error && (
@@ -127,6 +132,18 @@ function App() {
             <option key={index} value={sign}>{sign}</option>
           ))}
         </select>
+        {dogType2 && (
+        <p><br /><b>相手の星座を犬に例えると:<br></br> {dogType2}</b></p>
+      )}
+      {dogCharacter2 && (
+          <>
+        <p><b>性格を一言でいうと:<br></br> {dogCharacter2}</b></p>
+        <img src={dogImages[dogType2]} alt={`画像：${dogType2}`} className="dog-image" />
+        </>
+      )}
+      {error && (
+        <p className="error">エラー: {error}</p> 
+      )}
       <br />
       <button onClick={calculateCompatibility}>相性をチェック</button>
       {compatibility && (
