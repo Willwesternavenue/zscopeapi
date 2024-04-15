@@ -30,6 +30,13 @@ button:hover {
   background-color: #4aa9c7; /* Change button background color on hover */
 }
 
+.dog-image {
+  max-width: 250px; /* Adjust the size as needed for your design */
+  max-height: 250px;
+  width: auto;
+  height: auto;
+}
+
 .error {
   color: red; /* Change error text color */
   margin-top: 10px; /* Add margin for spacing above error messages */

@@ -3,18 +3,18 @@ import './App.css';
 
 function App() {
   const dogImages = {
-    'ボーダー・コリー': '/Collie.jpg',
-    'イングリッシュ・ブルドッグ': '/Fbulldog.jpg',
-    'パピヨン': '/Papillon.jpg',
-    'ラブラドール・レトリバー': '/Retriever.jpg',
-    'シベリアン・ハスキー': '/Huskey.jpg',
-    'ジャーマン・シェパード': '/Shepherd.jpg',
-    'カヴァリア・キング・チャールズ・スパニエル': '/Spaniel.jpg',
-    'ドーベルマン': '/Doberman.jpg',
-    'オーストラリアン・シェパード': '/Ashepherd.jpg',
-    'セント・バーナード': '/Bernard.jpg',
-    'ダルメシアン': '/Dalmatian.jpg',
-    'ゴールデン・レトリバー': '/Gretriever.jpg',
+    'ボーダー・コリー': '/Dogs/Collie.jpg',
+    'イングリッシュ・ブルドッグ': '/Dogs/Ebulldog.jpg',
+    'パピヨン': '/Dogs/Papillon.jpg',
+    'ラブラドール・レトリバー': '/Dogs/Lretriever.jpg',
+    'シベリアン・ハスキー': '/Dogs/Husky.jpg',
+    'ジャーマン・シェパード': '/Dogs/Shepherd.jpg',
+    'カヴァリア・キング・チャールズ・スパニエル': '/Dogs/Spaniel.jpg',
+    'ドーベルマン': '/Dogs/Doberman.jpg',
+    'オーストラリアン・シェパード': '/Dogs/Ashepherd.jpg',
+    'セント・バーナード': '/Dogs/Bernard.jpg',
+    'ダルメシアン': '/Dogs/Dalmatian.jpg',
+    'ゴールデン・レトリバー': '/Dogs/Gretriever.jpg',
   };
   
   const [mySign, setMySign] = useState('');
@@ -90,7 +90,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>星座相性チェッカー</h1>
+      <h1>犬型星座占い</h1>
       <div>
         <label>あなたの星座：</label>
         <select value={mySign} onChange={(e) => handleSignChange(e, setMySign)}>
@@ -106,7 +106,7 @@ function App() {
       {dogCharacter && (
           <>
         <p><b>性格を一言でいうと:<br></br> {dogCharacter}</b></p>
-        <img src={dogImages[dogType]} alt={`画像：${dogType}`} />
+        <img src={dogImages[dogType]} alt={`画像：${dogType}`} className="dog-image" />
         </>
       )}
       {error && (
