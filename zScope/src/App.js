@@ -23,6 +23,9 @@ function App() {
   const [dogType, setDogType] = useState('');
   const [dogCharacter, setDogCharacter] = useState('');
   const [error, setError] = useState('');
+  console.log('mySign:', mySign);
+  console.log('partnerSign:', partnerSign);
+
 
   useEffect(() => {
     if (mySign) {
@@ -70,13 +73,15 @@ function App() {
     try {
       const apiKey = 'AIzaSyBdSdUJ2SnudvSs0FTYe2aLugIYToCvLOU';
       const spreadsheetId = '1_ny_jpo6gXKmSTMTaQT1o6RdEKR7UzrLA82aFc_1HV8';
-      const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet1!A2:C13?key=${apiKey}`);
+      const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet1!A2:C145?key=${apiKey}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
+      console.log('Received data:', data); // デバッグ情報を出力
       const values = data.values;
       const matchingRow = values.find(row => row[0] === mySign && row[1] === partnerSign);
+      console.log('Matching row:', matchingRow); // デバッグ情報を出力
       if (matchingRow) {
         setCompatibility(matchingRow[2]); 
       } else {
