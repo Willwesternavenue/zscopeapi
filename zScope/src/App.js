@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
-
   const dogImages = {
     'ボーダー・コリー': '/Collie.jpg',
     'イングリッシュ・ブルドッグ': '/Fbulldog.jpg',
@@ -12,7 +11,7 @@ function App() {
     'ジャーマン・シェパード': '/Shepherd.jpg',
     'カヴァリア・キング・チャールズ・スパニエル': '/Spaniel.jpg',
     'ドーベルマン': '/Doberman.jpg',
-    'オーストラリアン・シェパード': 'Ashepherd.jpg',
+    'オーストラリアン・シェパード': '/Ashepherd.jpg',
     'セント・バーナード': '/Bernard.jpg',
     'ダルメシアン': '/Dalmatian.jpg',
     'ゴールデン・レトリバー': '/Gretriever.jpg',
@@ -29,11 +28,13 @@ function App() {
     if (mySign) {
       fetchDogInfo();
     }
-    calculateCompatibility();
-  }, [mySign, partnerSign]);
+  }, [mySign]); // mySignが変更されたときに実行
+
 
   const handleSignChange = (event, setter) => {
     setter(event.target.value);
+    setError(''); // Reset error state when changing sign
+    setCompatibility(null); // Reset compatibility when changing signs
   };
 
   const fetchDogInfo = async () => {
@@ -61,6 +62,11 @@ function App() {
 
   const calculateCompatibility = async () => {
     setError('');
+
+    if (!mySign || !partnerSign) {
+      setError("Both signs need to be selected.");
+      return;
+    }
     try {
       const apiKey = 'AIzaSyBdSdUJ2SnudvSs0FTYe2aLugIYToCvLOU';
       const spreadsheetId = '1_ny_jpo6gXKmSTMTaQT1o6RdEKR7UzrLA82aFc_1HV8';
@@ -72,9 +78,9 @@ function App() {
       const values = data.values;
       const matchingRow = values.find(row => row[0] === mySign && row[1] === partnerSign);
       if (matchingRow) {
-        setCompatibility(matchingRow[2]); // Chemistry値を設定
+        setCompatibility(matchingRow[2]); 
       } else {
-        setCompatibility('??'); // マッチするデータがない場合
+        setCompatibility('??'); 
       }
     } catch (error) {
       console.error('Error fetching compatibility data:', error);
@@ -93,35 +99,34 @@ function App() {
             <option key={index} value={sign}>{sign}</option>
           ))}
         </select>
-        <br></br>
-        <label>相手の星座：</label>
+      </div>      
+      {dogType && (
+        <p><br /><b>あなたの星座を犬に例えると:<br></br> {dogType}</b></p>
+      )}
+      {dogCharacter && (
+          <>
+        <p><b>性格を一言でいうと:<br></br> {dogCharacter}</b></p>
+        <img src={dogImages[dogType]} alt={`画像：${dogType}`} />
+        </>
+      )}
+      {error && (
+        <p className="error">エラー: {error}</p> 
+      )}
+      <br /> 
+      <p>相性判断</p><br />
+
+      <label>相手の星座：</label>
         <select value={partnerSign} onChange={(e) => handleSignChange(e, setPartnerSign)}>
           <option value="">選択してください</option>
           {['牡羊座', '牡牛座', '双子座', '蟹座', '獅子座', '乙女座', '天秤座', '蠍座', '射手座', '山羊座', '水瓶座', '魚座'].map((sign, index) => (
             <option key={index} value={sign}>{sign}</option>
           ))}
         </select>
-      </div>
-      <br></br>
-      {dogType && (
-        <p><br></br><b>あなたの星座を犬に例えると:<br></br> {dogType}</b></p>
-      )}
-      {dogCharacter && (
-        <>
-        <p><b>性格を一言でいうと:<br></br> {dogCharacter}</b></p>
-        <img src={dogImages[dogType]} alt={`画像：${dogType}`} />
-        </>
-      )}
-      <br></br>
+      <br />
       <button onClick={calculateCompatibility}>相性をチェック</button>
-
-
-      {compatibility !== null && (
-        <p><br></br><b>あなたと相手の相性は {compatibility}% です！</b></p>
-      )}
-      {error && (
-        <p className="error">エラー: {error}</p> // エラーメッセージを表示
-      )}
+      {compatibility && (
+       <p><br /><b>あなたと相手の相性は {compatibility}% です！</b></p>
+   )}
     </div>
   );
 }
