@@ -111,11 +111,11 @@ function App() {
         </select>
       </div>      
       {dogType1 && (
-        <p><br /><b>あなたの星座を犬に例えると:<br></br> {dogType1}</b></p>
+        <p><br /><b>あなたの星座を犬に例えると:</b><br></br> {dogType1}</p>
       )}
       {dogCharacter1 && (
           <>
-        <p><b>性格を一言でいうと:<br></br> {dogCharacter1}</b></p>
+        <p><b>性格を一言でいうと:</b><br></br> {dogCharacter1}</p>
         <img src={dogImages[dogType1]} alt={`画像：${dogType1}`} className="dog-image" />
         </>
       )}
@@ -133,11 +133,11 @@ function App() {
           ))}
         </select>
         {dogType2 && (
-        <p><br /><b>相手の星座を犬に例えると:<br></br> {dogType2}</b></p>
+        <p><br /><b>相手の星座を犬に例えると</b>:<br></br> {dogType2}</p>
       )}
       {dogCharacter2 && (
           <>
-        <p><b>性格を一言でいうと:<br></br> {dogCharacter2}</b></p>
+        <p><b>性格を一言でいうと:</b><br></br> {dogCharacter2}</p>
         <img src={dogImages[dogType2]} alt={`画像：${dogType2}`} className="dog-image" />
         </>
       )}
