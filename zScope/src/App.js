@@ -213,7 +213,7 @@ function App() {
   <div>
     <p style={{ color: 'red' }}><b>両親から生まれたあなたのイメージは</b></p>
     <img src={thirdImage} alt="本人画像" className="dog-image" />
-    <p>性格を知るには星座を選択してください</p>
+    <p>内面を知るには星座を選択</p>
     <label>あなたの星座：</label>
         <select value={childSign} onChange={(e) => handleSignChange(e, setChildSign)}>
           <option value="">選択してください</option>
