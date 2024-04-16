@@ -251,7 +251,7 @@ function App() {
       )} 
       <br />
       <SocialShare />
-      <p>Presented by Zscope 2024. All Rights Reserved.</p>
+      <p>Produced by zScope 2024. All Rights Reserved.</p>
 
   </div>
 
