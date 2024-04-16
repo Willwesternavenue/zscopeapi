@@ -224,7 +224,7 @@ function App() {
         <br /><>
       {dogCharacter3 && (
           <>
-        <p><b>あなたの性格を一言でいうと:</b><br></br> {dogCharacter3}</p>
+        <p><b>あなたの性格は:</b><br></br> {dogCharacter3}</p>
         <p><b>あなたの弱点は:</b><br></br> {weakness}</p>
 
         </>
