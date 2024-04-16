@@ -233,7 +233,7 @@ function App() {
       <br /><br />
 
   </div>
-)}
+    )}
 
     
       <button onClick={calculateCompatibility}>両親の相性をチェック</button>
@@ -245,7 +245,8 @@ function App() {
        <p>{advisory}</p> {/* This line displays the advisory message */}
       </>
       )}
-      </div>
+      <p>Presented by Zscope 2024. All Rights Reserved.</p>
+  </div>
 
   );
 }
