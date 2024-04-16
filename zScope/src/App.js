@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import SocialShare from './SocialShare'; 
 import './App.css';
 
+
 function App() {
+  
   const dogImages = {
     'ボーダー・コリー': '/Dogs/Collie.jpg',
     'イングリッシュ・ブルドッグ': '/Dogs/Ebulldog.jpg',
@@ -159,6 +162,7 @@ function App() {
   };
   
   return (
+    
     <div className="App">
       <h1>犬型星座占い</h1>
       <div>
@@ -236,7 +240,7 @@ function App() {
     )}
 
     
-      <button onClick={calculateCompatibility}>両親の相性をチェック</button>
+      {/*<button onClick={calculateCompatibility}>両親の相性をチェック</button> */}
       {
       
       compatibility && (
@@ -244,8 +248,11 @@ function App() {
        <p><b>あなたの両親の相性は {compatibility}% です！</b></p>
        <p>{advisory}</p> {/* This line displays the advisory message */}
       </>
-      )}
+      )} 
+      <br />
+      <SocialShare />
       <p>Presented by Zscope 2024. All Rights Reserved.</p>
+
   </div>
 
   );

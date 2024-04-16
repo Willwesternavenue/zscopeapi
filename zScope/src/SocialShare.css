@@ -1,0 +1,31 @@
+.social-share-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* ボタン間の隙間 */
+  }
+  
+  .line-share-button, .copy-link-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px; /* 高さを揃える */
+  }
+  
+  .line-icon {
+    width: 32px; /* Twitter アイコンと同じサイズに */
+    height: 32px;
+  }
+  
+  .copy-link-button {
+    background-color: #4CAF50; /* ボタンの背景色 */
+    color: white; /* テキスト色 */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .copy-link-button:hover {
+    background-color: #45a049; /* ホバー時の背景色変更 */
+  }
+  
