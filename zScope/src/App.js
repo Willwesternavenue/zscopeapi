@@ -207,7 +207,7 @@ function App() {
       <br /><br />
       {thirdImage && (
   <div>
-    <p style={{ color: 'red' }}><b>両親から生まれたあなたの外見イメージは</b></p>
+    <p style={{ color: 'red' }}><b>両親から生まれたあなたのイメージは</b></p>
     <img src={thirdImage} alt="本人画像" className="dog-image" />
     <p>性格を知るには星座を選択してください</p>
     <label>あなたの星座：</label>
