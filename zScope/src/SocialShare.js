@@ -30,7 +30,7 @@ function SocialShare() {
 
       <a href="https://line.me/R/msg/text/?あなたの星座を犬に例えると？ 結果は⇒ https://zscopeapi-git-main-willwesternavenues-projects.vercel.app/"
          className="line-share-button">
-        <img src="/LINE.png" alt="LINEでシェア" className="line-icon" />
+        <img src="/line-512.webp" alt="LINEでシェア" className="line-icon" />
       </a>
     </div>
   );
