@@ -19,12 +19,16 @@ function App() {
   
   const [mySign, setMySign] = useState('');
   const [partnerSign, setPartnerSign] = useState('');
+  const [childSign, setChildSign] = useState('');
   const [compatibility, setCompatibility] = useState(null);
   const [advisory, setAdvisory] = useState('');
   const [dogType1, setDogType1] = useState('');
   const [dogType2, setDogType2] = useState('');
+  const [dogType3, setDogType3] = useState('');
   const [dogCharacter1, setDogCharacter1] = useState('');
   const [dogCharacter2, setDogCharacter2] = useState('');
+  const [dogCharacter3, setDogCharacter3] = useState('');
+  const [weakness, setWeakness] = useState(''); 
   const [error, setError] = useState('');
   console.log('mySign:', mySign);
   console.log('partnerSign:', partnerSign);
@@ -37,7 +41,10 @@ function App() {
     if (partnerSign) {
       fetchDogInfo(partnerSign, setDogType2, setDogCharacter2);
     }
-  }, [mySign, partnerSign]); // mySign または partnerSign が変更されたときに実行
+    if (childSign) {
+      fetchDogInfo(childSign, setDogType3, setDogCharacter3);
+    }
+  }, [mySign, partnerSign, childSign]); // mySign または partnerSign が変更されたときに実行
   
 
   const handleSignChange = (event, setter) => {
@@ -50,7 +57,7 @@ function App() {
     try {
       const apiKey = 'AIzaSyBdSdUJ2SnudvSs0FTYe2aLugIYToCvLOU';
       const spreadsheetId = '1_ny_jpo6gXKmSTMTaQT1o6RdEKR7UzrLA82aFc_1HV8';
-      const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet2!A2:C13?key=${apiKey}`);
+      const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet2!A2:D13?key=${apiKey}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -59,9 +66,11 @@ function App() {
       if (matchingRow) {
         setDogType(matchingRow[1]);
         setDogCharacter(matchingRow[2]);
+        setWeakness(matchingRow[3]);
       } else {
         setDogType('');
         setDogCharacter('');
+        setWeakness('');
       }
     } catch (error) {
       console.error('Error fetching dog data:', error);
@@ -101,6 +110,37 @@ function App() {
       setError('Failed to load compatibility data.');
     }
   };
+
+  const [thirdImage, setThirdImage] = useState('');
+
+  useEffect(() => {
+    if (mySign && partnerSign) {
+      fetchAdditionalDogImage();
+    }
+  }, [mySign, partnerSign]); // mySign と partnerSign が更新されたときに実行
+
+  const fetchAdditionalDogImage = async () => {
+    try {
+      const apiKey = 'AIzaSyBdSdUJ2SnudvSs0FTYe2aLugIYToCvLOU';
+      const spreadsheetId = '1_ny_jpo6gXKmSTMTaQT1o6RdEKR7UzrLA82aFc_1HV8';
+      const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet1!A2:E145?key=${apiKey}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      const matchingRow = data.values.find(row => row[0] === mySign && row[1] === partnerSign);
+      if (matchingRow) {
+        const imageName = matchingRow[4]; // E列から画像名を取得
+        setThirdImage(`/Dogs/Hybrid/${imageName}.jpg`);
+      } else {
+        setThirdImage(''); // 該当する画像がない場合はクリア
+      }
+    } catch (error) {
+      console.error('Error fetching third image:', error);
+      setError('Failed to load third image.');
+    }
+  };
+
   const getCompatibilityAdvisory = (percentage) => {
     if (percentage >= 90) {
       return "二人の相性は最高です！";
@@ -122,16 +162,16 @@ function App() {
     <div className="App">
       <h1>犬型星座占い</h1>
       <div>
-        <label>あなたの星座：</label>
+        <label>お父さんの星座：</label>
         <select value={mySign} onChange={(e) => handleSignChange(e, setMySign)}>
           <option value="">選択してください</option>
           {['牡羊座', '牡牛座', '双子座', '蟹座', '獅子座', '乙女座', '天秤座', '蠍座', '射手座', '山羊座', '水瓶座', '魚座'].map((sign, index) => (
             <option key={index} value={sign}>{sign}</option>
           ))}
         </select>
-      </div>      
+     
       {dogType1 && (
-        <p><br /><b>あなたの星座を犬に例えると:</b><br></br> {dogType1}</p>
+        <p><br /><b>お父さんの星座を犬に例えると:</b><br></br> {dogType1}</p>
       )}
       {dogCharacter1 && (
           <>
@@ -142,10 +182,10 @@ function App() {
       {error && (
         <p className="error">エラー: {error}</p> 
       )}
-      <br /> 
-      <p>相性判断</p><br />
+      </div>      
+      <br />
 
-      <label>相手の星座：</label>
+      <label>お母さんの星座：</label>
         <select value={partnerSign} onChange={(e) => handleSignChange(e, setPartnerSign)}>
           <option value="">選択してください</option>
           {['牡羊座', '牡牛座', '双子座', '蟹座', '獅子座', '乙女座', '天秤座', '蠍座', '射手座', '山羊座', '水瓶座', '魚座'].map((sign, index) => (
@@ -153,7 +193,7 @@ function App() {
           ))}
         </select>
         {dogType2 && (
-        <p><br /><b>相手の星座を犬に例えると</b>:<br></br> {dogType2}</p>
+        <p><br /><b>お母さんの星座を犬に例えると</b>:<br></br> {dogType2}</p>
       )}
       {dogCharacter2 && (
           <>
@@ -165,15 +205,48 @@ function App() {
         <p className="error">エラー: {error}</p> 
       )}
       <br /><br />
-      <button onClick={calculateCompatibility}>相性をチェック</button>
+      {thirdImage && (
+  <div>
+    <p style={{ color: 'red' }}><b>両親から生まれたあなたの外見イメージは</b></p>
+    <img src={thirdImage} alt="本人画像" className="dog-image" />
+    <p>性格を知るには星座を選択してください</p>
+    <label>あなたの星座：</label>
+        <select value={childSign} onChange={(e) => handleSignChange(e, setChildSign)}>
+          <option value="">選択してください</option>
+          {['牡羊座', '牡牛座', '双子座', '蟹座', '獅子座', '乙女座', '天秤座', '蠍座', '射手座', '山羊座', '水瓶座', '魚座'].map((sign, index) => (
+            <option key={index} value={sign}>{sign}</option>
+          ))}
+        </select>
+        <br /><>
+      {dogCharacter3 && (
+          <>
+        <p><b>あなたの性格を一言でいうと:</b><br></br> {dogCharacter3}</p>
+        <p><b>あなたの弱点は:</b><br></br> {weakness}</p>
+
+        </>
+      )}
+      {error && (
+        <p className="error">エラー: {error}</p> 
+      )}
+
+            </>
+      <br /><br />
+
+  </div>
+)}
+
+    
+      <button onClick={calculateCompatibility}>両親の相性をチェック</button>
       {
+      
       compatibility && (
       <>
-       <p><b>あなたと相手の相性は {compatibility}% です！</b></p>
+       <p><b>あなたの両親の相性は {compatibility}% です！</b></p>
        <p>{advisory}</p> {/* This line displays the advisory message */}
       </>
       )}
       </div>
+
   );
 }
 export default App;
