@@ -13,8 +13,8 @@
   }
   
   .line-icon {
-    width: 32px; /* Twitter アイコンと同じサイズに */
-    height: 32px;
+    width: 50px; /* Twitter アイコンと同じサイズに */
+    height: 50px;
   }
   
   .copy-link-button {

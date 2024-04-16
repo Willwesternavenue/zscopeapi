@@ -22,10 +22,10 @@ function SocialShare() {
         title={"Find your zScope here!"}
         hashtags={["Example", "React"]}
       >
-        <TwitterIcon size={32} round />
+        <TwitterIcon size={50} round />
       </TwitterShareButton>
       <button onClick={copyToClipboard} className="copy-link-button">
-        {copied ? 'Copied!' : '共有リンク作成'}
+        <b>{copied ? 'Copied!' : '共有リンク作成'}</b>
       </button>
 
       <a href="https://line.me/R/msg/text/?あなたの星座を犬に例えると？ 結果は⇒ https://zscopeapi-git-main-willwesternavenues-projects.vercel.app/"
