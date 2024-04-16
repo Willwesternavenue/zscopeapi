@@ -60,7 +60,7 @@ function App() {
     try {
       const apiKey = 'AIzaSyBdSdUJ2SnudvSs0FTYe2aLugIYToCvLOU';
       const spreadsheetId = '1_ny_jpo6gXKmSTMTaQT1o6RdEKR7UzrLA82aFc_1HV8';
-      const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet2!A2:D13?key=${apiKey}`);
+      const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet2!A2:E13?key=${apiKey}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -70,6 +70,7 @@ function App() {
         setDogType(matchingRow[1]);
         setDogCharacter(matchingRow[2]);
         setWeakness(matchingRow[3]);
+        setDogCharacter3(matchingRow[4]);
       } else {
         setDogType('');
         setDogCharacter('');
@@ -224,8 +225,9 @@ function App() {
         <br /><>
       {dogCharacter3 && (
           <>
-        <p><b>あなたの性格は:</b><br></br> {dogCharacter3}</p>
-        <p><b>あなたの弱点は:</b><br></br> {weakness}</p>
+        <p><b>Z-タイプ: </b><br></br>情熱的な{dogType3}</p>
+        <p><b>あなたの性格は: </b><br></br> {dogCharacter3}</p>
+        <p><b>あなたの弱点は: </b><br></br> {weakness}</p>
 
         </>
       )}
