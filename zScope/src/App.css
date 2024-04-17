@@ -1,127 +1,96 @@
-/* App.css */
+/* ベーススタイルとボックスサイジングのグローバル適用 */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 
 .App {
   text-align: center;
-  padding: 20px; /* Add padding for better spacing */
+  padding: 20px; /* より広い余白 */
 }
 
 h1 {
-  font-size: 2rem; /* Increase font size for the heading */
-  margin-bottom: 20px; /* Add margin for spacing below the heading */
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
 
-select {
-  font-size: 1rem; /* Increase font size for select dropdowns */
-  margin-bottom: 10px; /* Add margin for spacing between select elements */
+select, button {
+  font-size: 1rem;
+  margin-bottom: 10px;
 }
 
+.button {
+  padding: 10px 20px;
+  background-color: #61dafb;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #4aa9c7;
+}
+
+/* ライン共有ボタンとアイコンのスタイル */
 .line-share-button {
   display: inline-block;
   margin: 10px;
 }
 
 .line-icon {
-  width: 50px;  /* アイコンのサイズ調整 */
+  width: 50px;
   height: auto;
 }
 
-.dog-image {
-  width: 100%; /* 画像の幅を親要素に合わせる */
-  height: auto; /* 高さを自動調整してアスペクト比を保持 */
-  max-width: 100%; /* 画像の最大幅を制限 */
-  margin-top: auto; /* 画像を中央揃え */
+/* エラーメッセージのスタイリング */
+.error {
+  color: red;
+  margin-top: 10px;
 }
 
-@media (min-width: 768px) {
-  .dog-image {
-    max-width: 100%; /* タブレットやデスクトップでは幅の制限を解除 */
-  }
+/* 画像のスタイリング */
+.dog-image, .child-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 10px auto;
 }
 
-.sign-section img {
-  display: block; /* 画像をブロック要素として表示 */
-  margin: 10px auto; /* 画像を上下にマージンを設け、中央揃え */
+.child-image {
+  max-width: 80%; /* 子供の画像を80%の最大幅で */
 }
 
-
-button {
-  font-size: 1rem; /* Increase font size for buttons */
-  padding: 10px 20px; /* Add padding for better button appearance */
-  background-color: #61dafb; /* Change button background color */
-  color: white; /* Change button text color */
-  border: none; /* Remove button border */
-  border-radius: 5px; /* Add border radius for rounded corners */
-  cursor: pointer; /* Change cursor to pointer on hover */
-  transition: background-color 0.3s ease; /* Add transition effect for background color */
-}
-
-button:hover {
-  background-color: #4aa9c7; /* Change button background color on hover */
+/* グリッドセクションとサインセクションのスタイリング */
+.signs-section, .sign-section {
+  display: grid;
 }
 
 .signs-section {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
   padding: 10px;
 }
 
 .sign-section {
-  display: grid;
-  grid-template-rows: auto 1fr auto; /* テキスト、フレキシブルスペース、画像の順に行を設定 */
-  align-items: start; /* 各アイテムを行の開始部分に揃える */
+  grid-template-rows: auto 1fr auto;
+  align-items: start;
 }
-
-.dog-image {
-  width: 100%; /* 画像の幅を親要素に合わせる */
-  height: auto; /* 高さを自動調整してアスペクト比を保持 */
-  grid-row: 3; /* 画像を常に3行目に配置 */
-}
-
 
 .child-section {
   text-align: center;
   margin-top: 20px;
 }
 
-.child-image {
-  width: 80%; /* 画像の幅を親要素の80%に設定 */
-  height: auto; /* 高さを自動調整してアスペクト比を保持 */
-  display: block; /* 画像をブロック要素として扱う */
-  margin: 20px auto; /* 上下に20pxのマージンを設け、左右は自動で中央揃え */
-}
-
-.error {
-  color: red; /* Change error text color */
-  margin-top: 10px; /* Add margin for spacing above error messages */
-}
-
-/* ボックスサイジングのグローバル適用 */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-/* ベーススタイル */
-.App {
-  padding: 10px; /* すべての端で少し余白を持たせる */
-}
-
-/* モバイル用のスタイリング */
+/* メディアクエリでのレスポンシブデザイン */
 @media (max-width: 768px) {
-  .sign-section {
-    flex: 1 1 50%; /* スマホでも画面の50%を使う */
+  .signs-section {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
-  .dog-image {
-    width: 100%; /* 画像の幅を親要素に合わせる */
-    max-width: 100%; /* 画像の最大幅を親要素の100%に */
-    height: auto; /* 高さ自動調整 */
-    margin-top: auto; /* 画像を中央揃え */
-  }
 
-/* タブレット以上のスタイリング */
 @media (min-width: 769px) {
   .signs-section {
-    flex-direction: row; /* タブレット以上では横並びに */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
