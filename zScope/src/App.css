@@ -6,8 +6,8 @@
 .App {
   text-align: center;
   padding: 10px; /* 余白を少し調整 */
-  width: 95%; /* コンテナの幅を指定 */
-  max-width: 98%; /* 最大幅を画面幅に制限 */
+  width: 100%; /* コンテナの幅を指定 */
+  max-width: 100%; /* 最大幅を画面幅に制限 */
   overflow: hidden; /* はみ出した内容は非表示 */
 }
 
