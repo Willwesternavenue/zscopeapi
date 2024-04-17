@@ -181,7 +181,7 @@ function App() {
   
   return ( 
     <div className="App">
-      <div className="banner">ワンコ星座占い</div>  {/* バナーの追加 */}
+      <div className="banner">わんこ星座占い</div>  {/* バナーの追加 */}
       <br />
       
       <div className="signs-section">
