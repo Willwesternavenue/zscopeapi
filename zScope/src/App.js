@@ -211,8 +211,8 @@ function App() {
   
   return ( 
     <div className="App">
-      <div className="banner">わんこ星座占い</div>  {/* バナーの追加 */}
-      <p>Welcome! 最初にご両親の星座を教えてください</p>
+      <div className="banner">わんこ 星座占い</div>  {/* バナーの追加 */}
+      <p>ようこそ！ 最初にご両親の星座を教えてください</p>
       
       <div className="signs-section">
       <div className="sign-section">
@@ -277,7 +277,7 @@ function App() {
               <br />
       {childSign && dogCharacter3 && weakness &&(
         <>
-        <p><b>Z-タイプ分類名: </b><br></br>{traits || '特徴なし'}<br /><b>{dogType3}</b></p>
+        <p><b>zScope分類名: </b><br></br>{traits || '特徴なし'}<br /><b>{dogType3}</b></p>
         <p><b>あなたの性格は: </b><br></br> {dogCharacter3}</p>
         <p><b>あなたの弱点は: </b><br></br> {weakness}</p>
         </>
