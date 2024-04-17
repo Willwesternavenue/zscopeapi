@@ -32,6 +32,11 @@ function App() {
     { label: "水瓶座 (1/20-2/18)", value: "水瓶座" },
     { label: "魚座 (2/19-3/20)", value: "魚座" }
   ];
+
+  const handleReload = () => {
+    window.location.reload();
+  };
+
   
   const [mySign, setMySign] = useState('');
   const [partnerSign, setPartnerSign] = useState('');
@@ -283,9 +288,12 @@ function App() {
     </div>
 
       <SocialShare />
+      <button onClick={handleReload} className="reload-button">TOPへ</button>
       <p>zScope 2024. All Rights Reserved.</p>
+
 
   </div>
   );
 }
+
 export default App;
