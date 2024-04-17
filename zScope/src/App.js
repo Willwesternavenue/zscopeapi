@@ -266,7 +266,7 @@ function App() {
         <div>
           <img src={thirdImage} alt="本人画像" className="child-image" />
           <p style={{ color: 'red' }}><b>あなたのイメージ像</b></p>
-          <p>次にあなたの星座を選ぶと詳しいプロフィールが表示されます</p>
+          <p>次に星座を選ぶとタイプと性格が表示されます</p>
           <label>あなたの星座は </label>
               <select value={childSign} onChange={(e) => handleSignChange(e, setChildSign)}>
               <option value="">星座を選択</option>
