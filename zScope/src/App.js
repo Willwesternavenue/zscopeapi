@@ -7,7 +7,7 @@ function App() {
   
   const dogImages = {
     'ボーダー・コリー': '/Dogs/Collie.jpg',
-    'イングリッシュ・ブルドッグ': '/Dogs/Ebulldog.jpg',
+    'ブルドッグ': '/Dogs/Ebulldog.jpg',
     'パピヨン': '/Dogs/Papillon.jpg',
     'ラブラドール・レトリバー': '/Dogs/Lretriever.jpg',
     'シベリアン・ハスキー': '/Dogs/Husky.jpg',
