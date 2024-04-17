@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SocialShare from './SocialShare'; 
 import './App.css';
 
-
 function App() {
-  
   const dogImages = {
     'ボーダー・コリー': '/Dogs/Collie.jpg',
     'ブルドッグ': '/Dogs/Ebulldog.jpg',
@@ -57,11 +55,14 @@ function App() {
     if (partnerSign) {
       fetchDogInfo(partnerSign, setDogType2, setDogCharacter2);
     }
-    if (childSign) {
-      fetchDogInfo(childSign, setDogType3, setDogCharacter3);
-    }
-  }, [mySign, partnerSign, childSign]); // mySign または partnerSign が変更されたときに実行
+  }, [mySign, partnerSign]); // mySign または partnerSign が変更されたときに実行
   
+  // 子の星座に関する情報を取得
+  useEffect(() => {
+    if (childSign) {
+        fetchDogInfoChild(childSign, setDogType3, setDogCharacter3, setWeakness, setTraits);
+    }
+  }, [childSign]);
 
   const handleSignChange = (event, setter) => {
     setter(event.target.value);
@@ -82,15 +83,40 @@ function App() {
       if (matchingRow) {
         setDogType(matchingRow[1]);
         setDogCharacter(matchingRow[2]);
-        setWeakness(matchingRow[3]);
-        setDogCharacter3(matchingRow[4]);
-      } else {
+        }
+       else {
         setDogType('');
         setDogCharacter('');
-        setWeakness('');
-        setDogCharacter3('');
+        }
+      } catch (error) {
+      console.error('Error fetching dog data:', error);
+      setError('Failed to load dog data.');
+    }
+  };
+
+  const fetchDogInfoChild = async (sign, setDogType3, setDogCharacter3, setWeakness) => {
+    try {
+      const apiKey = 'AIzaSyBdSdUJ2SnudvSs0FTYe2aLugIYToCvLOU';
+      const spreadsheetId = '1_ny_jpo6gXKmSTMTaQT1o6RdEKR7UzrLA82aFc_1HV8';
+      const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet2!A2:E13?key=${apiKey}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-    } catch (error) {
+      const data = await response.json();
+      const matchingRow = data.values.find(row => row[0] === sign);
+      if (matchingRow) {
+        setDogType3(matchingRow[1]);
+        setWeakness(matchingRow[3]);
+        setDogCharacter3(matchingRow[4]);
+
+        }
+       else {
+        setDogType3('');
+        setDogCharacter3('');
+        setWeakness('');
+        setTraits('');
+        }
+      } catch (error) {
       console.error('Error fetching dog data:', error);
       setError('Failed to load dog data.');
     }
