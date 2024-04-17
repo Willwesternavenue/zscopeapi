@@ -36,7 +36,6 @@ function App() {
   const handleReload = () => {
     window.location.reload();
   };
-
   
   const [mySign, setMySign] = useState('');
   const [partnerSign, setPartnerSign] = useState('');
@@ -168,8 +167,7 @@ function App() {
         calculateCompatibility();
       fetchAdditionalDogImage();
     }
-  }, [mySign, partnerSign]); // mySign と partnerSign が更新されたときに実行
-
+  }, [mySign, partnerSign]); 
   const fetchAdditionalDogImage = async () => {
     try {
       const apiKey = process.env.REACT_APP_API_KEY;
@@ -181,10 +179,10 @@ function App() {
       const data = await response.json();
       const matchingRow = data.values.find(row => row[0] === mySign && row[1] === partnerSign);
       if (matchingRow) {
-        const imageName = matchingRow[4]; // E列から画像名を取得
+        const imageName = matchingRow[4]; 
         setThirdImage(`/Dogs/Hybrid/${imageName}.jpg`);
       } else {
-        setThirdImage(''); // 該当する画像がない場合はクリア
+        setThirdImage(''); 
       }
     } catch (error) {
       console.error('Error fetching third image:', error);
@@ -203,7 +201,6 @@ function App() {
       return "二人の相性は平均以上";
     } else if (percentage >= 50) {
       return "相性はそれほどですが、努力次第！";
-
     } else {
       return "相性はあまり良くないかもしれません";
     }
@@ -212,11 +209,11 @@ function App() {
   return ( 
     <div className="App">
       <div className="banner">わんこ 星座占い</div>  {/* バナーの追加 */}
-      <p>ようこそ！ 最初にご両親の星座を教えてください</p>
+      <p>ようこそ！ まずはご両親の星座を選んでください</p>
       
       <div className="signs-section">
       <div className="sign-section">
-        <label>お父さんの星座：</label>
+        <label>お父さんの星座は</label>
         <select value={mySign} onChange={(e) => handleSignChange(e, setMySign)}>
           <option value="">星座を選択</option>
           {zodiacSigns.map((sign, index) => (
@@ -225,28 +222,28 @@ function App() {
         </select>
 
       {dogType1 && (
-        <p><br /><b>お父さんの星座を<br></br>犬に例えると:</b><br></br> {dogType1}</p>
+        <p><br /><b>お父さんを犬に例えると</b><br></br> {dogType1}</p>
       )}
       {dogCharacter1 && (
           <>
-        <p><b>こんな性格:</b><br></br> {dogCharacter1}</p>
+        <p><b>父の性格:</b><br></br> {dogCharacter1}</p>
         <img src={dogImages[dogType1]} alt={`画像：${dogType1}`} className="dog-image" />
         </>
       )}
       {error && (<p className="error">エラー: {error}</p> )}
       </div>      
       <div className="sign-section">
-      <label>お母さんの星座：</label>
+      <label>お母さんの星座は</label>
         <select value={partnerSign} onChange={(e) => handleSignChange(e, setPartnerSign)}>
           <option value="">星座を選択</option>
           {zodiacSigns.map((sign, index) => (
             <option key={index} value={sign.value}>{sign.label}</option>
           ))}
         </select>
-        {dogType2 && (<p><br /><b>お母さんの星座を<br></br>犬に例えると</b>:<br></br> {dogType2}</p>)}
+        {dogType2 && (<p><br /><b>お母さんを犬に例えると</b><br></br> {dogType2}</p>)}
       {dogCharacter2 && (
           <>
-        <p><b>こんな性格:</b><br></br> {dogCharacter2}</p>
+        <p><b>母の性格:</b><br></br> {dogCharacter2}</p>
         <img src={dogImages[dogType2]} alt={`画像：${dogType2}`} className="dog-image" />
         </>
       )}
@@ -266,7 +263,7 @@ function App() {
         <div>
           <img src={thirdImage} alt="本人画像" className="child-image" />
           <p style={{ color: 'red' }}><b>あなたのイメージ像</b></p>
-          <p>次に星座を選ぶとタイプと性格が表示されます</p>
+          <p>次に星座を選ぶと内面のタイプがわかります</p>
           <label>あなたの星座は </label>
               <select value={childSign} onChange={(e) => handleSignChange(e, setChildSign)}>
               <option value="">星座を選択</option>
@@ -286,12 +283,9 @@ function App() {
         </div>
       )}
     </div>
-
       <SocialShare />
       <button onClick={handleReload} className="reload-button">TOPへ</button>
       <p>zScope 2024. All Rights Reserved.</p>
-
-
   </div>
   );
 }
