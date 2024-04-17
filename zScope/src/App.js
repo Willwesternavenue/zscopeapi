@@ -12,7 +12,7 @@ function App() {
     'ラブラドール・レトリバー': '/Dogs/Lretriever.jpg',
     'シベリアン・ハスキー': '/Dogs/Husky.jpg',
     'ジャーマン・シェパード': '/Dogs/Shepherd.jpg',
-    'カヴァリア・キング・チャールズ・スパニエル': '/Dogs/Spaniel.jpg',
+    'キャバリア・スパニエル': '/Dogs/Spaniel.jpg',
     'ドーベルマン': '/Dogs/Doberman.jpg',
     'オーストラリアン・シェパード': '/Dogs/Ashepherd.jpg',
     'セント・バーナード': '/Dogs/Bernard.jpg',
