@@ -162,11 +162,11 @@ function App() {
     }
   };
   
-  return (
-    
+  return ( 
     <div className="App">
       <h1>犬型星座占い</h1>
-      <div>
+      <div className="signs-section">
+      <div className="sign-section">
         <label>お父さんの星座：</label>
         <select value={mySign} onChange={(e) => handleSignChange(e, setMySign)}>
           <option value="">選択してください</option>
@@ -174,7 +174,6 @@ function App() {
             <option key={index} value={sign}>{sign}</option>
           ))}
         </select>
-     
       {dogType1 && (
         <p><br /><b>お父さんの星座を犬に例えると:</b><br></br> {dogType1}</p>
       )}
@@ -184,12 +183,9 @@ function App() {
         <img src={dogImages[dogType1]} alt={`画像：${dogType1}`} className="dog-image" />
         </>
       )}
-      {error && (
-        <p className="error">エラー: {error}</p> 
-      )}
+      {error && (<p className="error">エラー: {error}</p> )}
       </div>      
-      <br />
-
+      <div className="sign-section">
       <label>お母さんの星座：</label>
         <select value={partnerSign} onChange={(e) => handleSignChange(e, setPartnerSign)}>
           <option value="">選択してください</option>
@@ -197,54 +193,44 @@ function App() {
             <option key={index} value={sign}>{sign}</option>
           ))}
         </select>
-        {dogType2 && (
-        <p><br /><b>お母さんの星座を犬に例えると</b>:<br></br> {dogType2}</p>
-      )}
+        {dogType2 && (<p><br /><b>お母さんの星座を犬に例えると</b>:<br></br> {dogType2}</p>)}
       {dogCharacter2 && (
           <>
         <p><b>性格を一言でいうと:</b><br></br> {dogCharacter2}</p>
         <img src={dogImages[dogType2]} alt={`画像：${dogType2}`} className="dog-image" />
         </>
       )}
-      {error && (
-        <p className="error">エラー: {error}</p> 
-      )}
-      <br /><br />
+      {error && (<p className="error">エラー: {error}</p> )}
+  </div>
+</div>
+<div className="child-section">
       {thirdImage && (
-  <div>
-    <p style={{ color: 'red' }}><b>両親から生まれたあなたのイメージは</b></p>
-    <img src={thirdImage} alt="本人画像" className="dog-image" />
-    <p>内面を知るには星座を選択</p>
-    <label>あなたの星座：</label>
-        <select value={childSign} onChange={(e) => handleSignChange(e, setChildSign)}>
-          <option value="">選択してください</option>
-          {['牡羊座', '牡牛座', '双子座', '蟹座', '獅子座', '乙女座', '天秤座', '蠍座', '射手座', '山羊座', '水瓶座', '魚座'].map((sign, index) => (
-            <option key={index} value={sign}>{sign}</option>
-          ))}
-        </select>
-        <br /><>
+        <div>
+          <img src={thirdImage} alt="本人画像" className="dog-image" />
+          <p style={{ color: 'red' }}><b>両親から生まれたあなたのイメージ</b></p>
+ 
+          <p>＜内面を知るには星座を選択＞</p>
+          <label>あなたの星座：</label>
+              <select value={childSign} onChange={(e) => handleSignChange(e, setChildSign)}>
+                <option value="">選択してください</option>
+                {['牡羊座', '牡牛座', '双子座', '蟹座', '獅子座', '乙女座', '天秤座', '蠍座', '射手座', '山羊座', '水瓶座', '魚座'].map((sign, index) => (
+                  <option key={index} value={sign}>{sign}</option>
+                ))}
+              </select>
+              <br />
       {dogCharacter3 && (
-          <>
+        <>
         <p><b>Z-タイプ: </b><br></br>情熱的な{dogType3}</p>
         <p><b>あなたの性格は: </b><br></br> {dogCharacter3}</p>
         <p><b>あなたの弱点は: </b><br></br> {weakness}</p>
-
         </>
       )}
-      {error && (
-        <p className="error">エラー: {error}</p> 
+      {error && <p className="error">エラー: {error}</p>} 
+        </div>
       )}
-
-            </>
-      <br /><br />
-
-  </div>
-    )}
-
-    
+    </div>
       {/*<button onClick={calculateCompatibility}>両親の相性をチェック</button> */}
       {
-      
       compatibility && (
       <>
        <p><b>あなたの両親の相性は {compatibility}% です！</b></p>
@@ -253,10 +239,9 @@ function App() {
       )} 
       <br />
       <SocialShare />
-      <p>Produced by zScope 2024. All Rights Reserved.</p>
+      <p>zScope 2024. All Rights Reserved.</p>
 
   </div>
-
   );
 }
 export default App;

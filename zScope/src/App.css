@@ -48,6 +48,24 @@ button:hover {
   height: auto;
 }
 
+.signs-section {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.sign-section {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+}
+
+.child-section {
+  text-align: center;
+  margin-top: 20px;
+}
+
+
 .error {
   color: red; /* Change error text color */
   margin-top: 10px; /* Add margin for spacing above error messages */
