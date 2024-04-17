@@ -164,7 +164,9 @@ function App() {
   
   return ( 
     <div className="App">
-      <h1>犬型星座占い</h1>
+      <div className="banner">ワンコ星座占い</div>  {/* バナーの追加 */}
+      <br />
+      
       <div className="signs-section">
       <div className="sign-section">
         <label>お父さんの星座：</label>
@@ -208,7 +210,6 @@ function App() {
         <div>
           <img src={thirdImage} alt="本人画像" className="child-image" />
           <p style={{ color: 'red' }}><b>両親から生まれたあなたのイメージ</b></p>
- 
           <p>＜内面を知るには星座を選択＞</p>
           <label>あなたの星座：</label>
               <select value={childSign} onChange={(e) => handleSignChange(e, setChildSign)}>
@@ -218,14 +219,14 @@ function App() {
                 ))}
               </select>
               <br />
-      {dogCharacter3 && (
+      {childSign && dogCharacter3 && (
         <>
         <p><b>Z-タイプ: </b><br></br>情熱的な{dogType3}</p>
         <p><b>あなたの性格は: </b><br></br> {dogCharacter3}</p>
         <p><b>あなたの弱点は: </b><br></br> {weakness}</p>
         </>
       )}
-      {error && <p className="error">エラー: {error}</p>} 
+      {childSign && error && <p className="error">エラー: {error}</p>} 
         </div>
       )}
     </div>
