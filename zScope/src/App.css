@@ -56,8 +56,8 @@ select, button {
   background-color: #d2b48c; 
   color: white; /* 文字色を白に */
   text-align: center; /* テキストを中央揃えに */
-  padding: 20px 0; /* 上下にパディングを追加 */
-  font-size: 2rem; /* フォントサイズを大きく */
+  padding: 5px 0; /* 上下にパディングを追加 */
+  font-size: 3rem; /* フォントサイズを大きく */
   font-weight: bold; /* フォントを太字に */
   margin-bottom: 20px; /* 下にマージンを追加 */
 }
