@@ -59,7 +59,6 @@ select, button {
   margin-bottom: 20px; /* 下にマージンを追加 */
 }
 
-
 /* 画像のスタイリング */
 .dog-image, .child-image {
   width: 100%;
@@ -95,6 +94,10 @@ select, button {
 
 /* メディアクエリでのレスポンシブデザイン */
 @media (max-width: 768px) {
+  .banner {
+    font-size: 1.5rem; /* スマホ用にフォントサイズを小さくする */
+    padding: 15px 0; /* スマホ用にパディングを調整 */
+  }
   .signs-section {
     grid-template-columns: repeat(2, 1fr);
   }
