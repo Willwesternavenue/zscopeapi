@@ -88,3 +88,36 @@ button:hover {
   color: red; /* Change error text color */
   margin-top: 10px; /* Add margin for spacing above error messages */
 }
+
+/* ボックスサイジングのグローバル適用 */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* ベーススタイル */
+.App {
+  padding: 10px; /* すべての端で少し余白を持たせる */
+}
+
+/* モバイル用のスタイリング */
+@media (max-width: 768px) {
+  .signs-section {
+    flex-direction: column; /* スマホ表示では縦並びに変更 */
+  }
+
+  .sign-section {
+    margin-bottom: 20px; /* セクション間に余白を追加 */
+  }
+
+  .dog-image {
+    max-width: 100%; /* 画像の最大幅を親要素の100%に */
+    height: auto; /* 高さ自動調整 */
+  }
+}
+
+/* タブレット以上のスタイリング */
+@media (min-width: 769px) {
+  .signs-section {
+    flex-direction: row; /* タブレット以上では横並びに */
+  }
+}
