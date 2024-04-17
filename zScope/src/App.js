@@ -35,8 +35,6 @@ function App() {
     { label: "魚座 (2/19-3/20)", value: "魚座" }
   ];
   
-
-
   const [mySign, setMySign] = useState('');
   const [partnerSign, setPartnerSign] = useState('');
   const [childSign, setChildSign] = useState('');
@@ -90,6 +88,7 @@ function App() {
         setDogType('');
         setDogCharacter('');
         setWeakness('');
+        setDogCharacter3('');
       }
     } catch (error) {
       console.error('Error fetching dog data:', error);
@@ -246,7 +245,7 @@ function App() {
           ))}
         </select>
               <br />
-      {childSign && dogCharacter3 && (
+      {childSign && dogCharacter3 && weakness &&(
         <>
         <p><b>Z-タイプ分類名: </b><br></br>{traits || '特徴なし'}<b>{dogType3}</b></p>
         <p><b>あなたの性格は: </b><br></br> {dogCharacter3}</p>
