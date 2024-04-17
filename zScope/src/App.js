@@ -189,7 +189,7 @@ function App() {
       <div className="sign-section">
         <label>お父さんの星座：</label>
         <select value={mySign} onChange={(e) => handleSignChange(e, setMySign)}>
-          <option value="">星座を選択してください</option>
+          <option value="">星座を選択</option>
           {zodiacSigns.map((sign, index) => (
             <option key={index} value={sign.value}>{sign.label}</option>
           ))}
@@ -209,7 +209,7 @@ function App() {
       <div className="sign-section">
       <label>お母さんの星座：</label>
         <select value={partnerSign} onChange={(e) => handleSignChange(e, setPartnerSign)}>
-          <option value="">星座を選択してください</option>
+          <option value="">星座を選択</option>
           {zodiacSigns.map((sign, index) => (
             <option key={index} value={sign.value}>{sign.label}</option>
           ))}
@@ -240,7 +240,7 @@ function App() {
           <p>＜内面を知るには星座を選択＞</p>
           <label>あなたの星座：</label>
               <select value={childSign} onChange={(e) => handleSignChange(e, setChildSign)}>
-              <option value="">星座を選択してください</option>
+              <option value="">星座を選択</option>
               {zodiacSigns.map((sign, index) => (
             <option key={index} value={sign.value}>{sign.label}</option>
           ))}
