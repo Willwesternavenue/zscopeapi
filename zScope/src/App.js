@@ -228,11 +228,10 @@ function App() {
       {
       compatibility && (
       <>
-       <p><b>あなたの両親の相性は {compatibility}% です！</b></p>
-       <p>{advisory}</p> {/* This line displays the advisory message */}
+       <p><b>二人の相性は {compatibility}% です</b></p>
+        {/* <p>{advisory}</p> This line displays the advisory message */}
       </>
       )} 
-      <br />
 <div className="child-section">
       {thirdImage && (
         <div>
