@@ -206,7 +206,7 @@ function App() {
 <div className="child-section">
       {thirdImage && (
         <div>
-          <img src={thirdImage} alt="本人画像" className="dog-image" />
+          <img src={thirdImage} alt="本人画像" className="child-image" />
           <p style={{ color: 'red' }}><b>両親から生まれたあなたのイメージ</b></p>
  
           <p>＜内面を知るには星座を選択＞</p>

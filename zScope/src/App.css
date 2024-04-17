@@ -59,30 +59,36 @@ button:hover {
   background-color: #4aa9c7; /* Change button background color on hover */
 }
 
-.dog-image {
-  width: 100%; /* Adjust the size as needed for your design */
-  max-width: 100%;
-  height: auto;
-}
-
 .signs-section {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap; /* コンテンツが折り返すように設定 */
-  align-items: stretch; /* コンテンツの高さを揃える */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 10px;
+  padding: 10px;
 }
 
 .sign-section {
-  flex: 1 1 50%; /* それぞれのセクションが画面の半分の幅を取るように設定 */
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  box-sizing: border-box; /* パディングを幅に含める */
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* テキスト、フレキシブルスペース、画像の順に行を設定 */
+  align-items: start; /* 各アイテムを行の開始部分に揃える */
 }
+
+.dog-image {
+  width: 100%; /* 画像の幅を親要素に合わせる */
+  height: auto; /* 高さを自動調整してアスペクト比を保持 */
+  grid-row: 3; /* 画像を常に3行目に配置 */
+}
+
 
 .child-section {
   text-align: center;
   margin-top: 20px;
+}
+
+.child-image {
+  width: 80%; /* 画像の幅を親要素の80%に設定 */
+  height: auto; /* 高さを自動調整してアスペクト比を保持 */
+  display: block; /* 画像をブロック要素として扱う */
+  margin: 20px auto; /* 上下に20pxのマージンを設け、左右は自動で中央揃え */
 }
 
 .error {
