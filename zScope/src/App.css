@@ -107,8 +107,10 @@ button:hover {
   }
 }
   .dog-image {
+    width: 100%; /* 画像の幅を親要素に合わせる */
     max-width: 100%; /* 画像の最大幅を親要素の100%に */
     height: auto; /* 高さ自動調整 */
+    margin-top: auto; /* 画像を中央揃え */
   }
 
 /* タブレット以上のスタイリング */
