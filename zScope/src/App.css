@@ -25,6 +25,24 @@ select {
   height: auto;
 }
 
+.dog-image {
+  width: 100%; /* 画像の幅を親要素に合わせる */
+  height: auto; /* 高さを自動調整してアスペクト比を保持 */
+  max-width: 200px; /* 画像の最大幅を制限 */
+  margin: 0 auto; /* 画像を中央揃え */
+}
+
+@media (min-width: 768px) {
+  .dog-image {
+    max-width: 100%; /* タブレットやデスクトップでは幅の制限を解除 */
+  }
+}
+
+.sign-section img {
+  display: block; /* 画像をブロック要素として表示 */
+  margin: 10px auto; /* 画像を上下にマージンを設け、中央揃え */
+}
+
 
 button {
   font-size: 1rem; /* Increase font size for buttons */
