@@ -7,7 +7,7 @@ function SocialShare() {
   const [copied, setCopied] = useState(false);
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText("あなたの星座を犬に例えると？ 結果は⇒ https://zscopeapi-git-main-willwesternavenues-projects.vercel.app/").then(() => {
+    navigator.clipboard.writeText("『わんこ星座占い』あなたの星座を犬に例えると？ 結果は⇒ https://zscopeapi-git-main-willwesternavenues-projects.vercel.app/").then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }, () => {
@@ -28,7 +28,7 @@ function SocialShare() {
         <b>{copied ? 'Copied!' : '共有リンク作成'}</b>
       </button>
 
-      <a href="https://line.me/R/msg/text/?あなたの星座を犬に例えると？ 結果は⇒ https://zscopeapi-git-main-willwesternavenues-projects.vercel.app/"
+      <a href="https://line.me/R/msg/text/?『わんこ星座占い』あなたの星座を犬に例えると？ 結果は⇒ https://zscopeapi-git-main-willwesternavenues-projects.vercel.app/"
          className="line-share-button">
         <img src="/line-512.webp" alt="LINEでシェア" className="line-icon" />
       </a>

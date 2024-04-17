@@ -49,10 +49,8 @@ function App() {
   const [dogCharacter2, setDogCharacter2] = useState('');
   const [dogCharacter3, setDogCharacter3] = useState('');
   const [weakness, setWeakness] = useState(''); 
+  const [traits, setTraits] = useState('');
   const [error, setError] = useState('');
-  console.log('mySign:', mySign);
-  console.log('partnerSign:', partnerSign);
-
 
   useEffect(() => {
     if (mySign) {
@@ -109,22 +107,24 @@ function App() {
     try {
       const apiKey = 'AIzaSyBdSdUJ2SnudvSs0FTYe2aLugIYToCvLOU';
       const spreadsheetId = '1_ny_jpo6gXKmSTMTaQT1o6RdEKR7UzrLA82aFc_1HV8';
-      const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet1!A2:C145?key=${apiKey}`);
+      const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet1!A2:H145?key=${apiKey}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      console.log('Received data:', data); // デバッグ情報を出力
       const values = data.values;
       const matchingRow = values.find(row => row[0] === mySign && row[1] === partnerSign);
-      console.log('Matching row:', matchingRow); // デバッグ情報を出力
       if (matchingRow) {
+        setTraits(matchingRow[7]);
         const percentage = parseInt(matchingRow[2], 10); // Make sure to parse the string as an integer
         setCompatibility(percentage);
         setAdvisory(getCompatibilityAdvisory(percentage)); // Set the advisory message
       } else {
         setCompatibility('??');
         setAdvisory('Compatibility could not be determined.');
+        console.log('Received data:', data);
+        console.log('Matching row:', matchingRow);
+        console.log('Traits value:', matchingRow[7]);
       }
     } catch (error) {
       console.error('Error fetching compatibility data:', error);
@@ -136,6 +136,7 @@ function App() {
 
   useEffect(() => {
     if (mySign && partnerSign) {
+        calculateCompatibility();
       fetchAdditionalDogImage();
     }
   }, [mySign, partnerSign]); // mySign と partnerSign が更新されたときに実行
@@ -223,6 +224,15 @@ function App() {
       {error && (<p className="error">エラー: {error}</p> )}
   </div>
 </div>
+      {/*<button onClick={calculateCompatibility}>両親の相性をチェック</button> */}
+      {
+      compatibility && (
+      <>
+       <p><b>あなたの両親の相性は {compatibility}% です！</b></p>
+       <p>{advisory}</p> {/* This line displays the advisory message */}
+      </>
+      )} 
+      <br />
 <div className="child-section">
       {thirdImage && (
         <div>
@@ -238,7 +248,7 @@ function App() {
               <br />
       {childSign && dogCharacter3 && (
         <>
-        <p><b>Z-タイプ: </b><br></br>情熱的な{dogType3}</p>
+        <p><b>Z-タイプ: </b><br></br>{traits || '特徴なし'}<b>{dogType3}</b></p>
         <p><b>あなたの性格は: </b><br></br> {dogCharacter3}</p>
         <p><b>あなたの弱点は: </b><br></br> {weakness}</p>
         </>
@@ -247,15 +257,7 @@ function App() {
         </div>
       )}
     </div>
-      {/*<button onClick={calculateCompatibility}>両親の相性をチェック</button> */}
-      {
-      compatibility && (
-      <>
-       <p><b>あなたの両親の相性は {compatibility}% です！</b></p>
-       <p>{advisory}</p> {/* This line displays the advisory message */}
-      </>
-      )} 
-      <br />
+
       <SocialShare />
       <p>zScope 2024. All Rights Reserved.</p>
 
