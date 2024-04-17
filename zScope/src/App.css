@@ -5,7 +5,10 @@
 
 .App {
   text-align: center;
-  padding: 20px; /* より広い余白 */
+  padding: 10px; /* 余白を少し調整 */
+  width: 100%; /* コンテナの幅を指定 */
+  max-width: 100%; /* 最大幅を画面幅に制限 */
+  overflow: hidden; /* はみ出した内容は非表示 */
 }
 
 h1 {
@@ -100,11 +103,13 @@ select, button {
   }
   .signs-section {
     grid-template-columns: repeat(2, 1fr);
+    padding: 0;
   }
 }
 
 @media (min-width: 769px) {
   .signs-section {
     grid-template-columns: repeat(2, 1fr);
+    padding: 0 10px;
   }
 }
