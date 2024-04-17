@@ -208,7 +208,7 @@ function App() {
   
   return ( 
     <div className="App">
-      <div className="banner">わんこ 星座占い</div>  {/* バナーの追加 */}
+      <div className="banner">わんこ 星座占い by zScope</div>  {/* バナーの追加 */}
       <p>ようこそ！ まずはご両親の星座を選んでください</p>
       
       <div className="signs-section">
