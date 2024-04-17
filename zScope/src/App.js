@@ -77,8 +77,8 @@ function App() {
 
   const fetchDogInfo = async (sign, setDogType, setDogCharacter) => {
     try {
-      const apiKey = 'AIzaSyBdSdUJ2SnudvSs0FTYe2aLugIYToCvLOU';
-      const spreadsheetId = '1_ny_jpo6gXKmSTMTaQT1o6RdEKR7UzrLA82aFc_1HV8';
+      const apiKey = process.env.REACT_APP_API_KEY;
+      const spreadsheetId = process.env.REACT_APP_SHEET_ID;
       const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet2!A2:E13?key=${apiKey}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -134,8 +134,8 @@ function App() {
       return;
     }
     try {
-      const apiKey = 'AIzaSyBdSdUJ2SnudvSs0FTYe2aLugIYToCvLOU';
-      const spreadsheetId = '1_ny_jpo6gXKmSTMTaQT1o6RdEKR7UzrLA82aFc_1HV8';
+      const apiKey = process.env.REACT_APP_API_KEY;
+      const spreadsheetId = process.env.REACT_APP_SHEET_ID;
       const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet1!A2:H145?key=${apiKey}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -172,8 +172,8 @@ function App() {
 
   const fetchAdditionalDogImage = async () => {
     try {
-      const apiKey = 'AIzaSyBdSdUJ2SnudvSs0FTYe2aLugIYToCvLOU';
-      const spreadsheetId = '1_ny_jpo6gXKmSTMTaQT1o6RdEKR7UzrLA82aFc_1HV8';
+      const apiKey = process.env.REACT_APP_API_KEY;
+      const spreadsheetId = process.env.REACT_APP_SHEET_ID;
       const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet1!A2:E145?key=${apiKey}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
