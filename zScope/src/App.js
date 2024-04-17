@@ -183,7 +183,7 @@ function App() {
   return ( 
     <div className="App">
       <div className="banner">わんこ星座占い</div>  {/* バナーの追加 */}
-      <br />
+      <p>Welcome! 最初にご両親の星座を教えてください</p>
       
       <div className="signs-section">
       <div className="sign-section">
@@ -237,8 +237,8 @@ function App() {
         <div>
           <img src={thirdImage} alt="本人画像" className="child-image" />
           <p style={{ color: 'red' }}><b>あなたのイメージ像</b></p>
-          <p>＜内面を知るには星座を選択＞</p>
-          <label>あなたの星座：</label>
+          <p>次にあなたの星座を選ぶと詳しいプロフィールが表示されます</p>
+          <label>あなたの星座は </label>
               <select value={childSign} onChange={(e) => handleSignChange(e, setChildSign)}>
               <option value="">星座を選択</option>
               {zodiacSigns.map((sign, index) => (
@@ -248,7 +248,7 @@ function App() {
               <br />
       {childSign && dogCharacter3 && (
         <>
-        <p><b>Z-タイプ: </b><br></br>{traits || '特徴なし'}<b>{dogType3}</b></p>
+        <p><b>Z-タイプ分類名: </b><br></br>{traits || '特徴なし'}<b>{dogType3}</b></p>
         <p><b>あなたの性格は: </b><br></br> {dogCharacter3}</p>
         <p><b>あなたの弱点は: </b><br></br> {weakness}</p>
         </>
