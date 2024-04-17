@@ -277,7 +277,7 @@ function App() {
               <br />
       {childSign && dogCharacter3 && weakness &&(
         <>
-        <p><b>Z-タイプ分類名: </b><br></br>{traits || '特徴なし'}<b>{dogType3}</b></p>
+        <p><b>Z-タイプ分類名: </b><br></br>{traits || '特徴なし'}<br /><b>{dogType3}</b></p>
         <p><b>あなたの性格は: </b><br></br> {dogCharacter3}</p>
         <p><b>あなたの弱点は: </b><br></br> {weakness}</p>
         </>
