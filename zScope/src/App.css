@@ -60,28 +60,29 @@ button:hover {
 }
 
 .dog-image {
-  max-width: 250px; /* Adjust the size as needed for your design */
-  max-height: 250px;
-  width: auto;
+  width: 100%; /* Adjust the size as needed for your design */
+  max-width: 100%;
   height: auto;
 }
 
 .signs-section {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 20px;
+  flex-wrap: wrap; /* コンテンツが折り返すように設定 */
 }
 
 .sign-section {
-  flex: 1;
+  flex: 1 1 50%; /* それぞれのセクションが画面の半分の幅を取るように設定 */
   padding: 10px;
-  text-align: center;
+  box-sizing: border-box; /* パディングを幅に含める */
 }
 
 .child-section {
   text-align: center;
   margin-top: 20px;
 }
+
+
 
 
 .error {
@@ -101,19 +102,14 @@ button:hover {
 
 /* モバイル用のスタイリング */
 @media (max-width: 768px) {
-  .signs-section {
-    flex-direction: column; /* スマホ表示では縦並びに変更 */
-  }
-
   .sign-section {
-    margin-bottom: 20px; /* セクション間に余白を追加 */
+    flex: 1 1 50%; /* スマホでも画面の50%を使う */
   }
-
+}
   .dog-image {
     max-width: 100%; /* 画像の最大幅を親要素の100%に */
     height: auto; /* 高さ自動調整 */
   }
-}
 
 /* タブレット以上のスタイリング */
 @media (min-width: 769px) {
