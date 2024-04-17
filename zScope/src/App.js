@@ -112,9 +112,8 @@ function App() {
         }
        else {
         setDogType3('');
-        setDogCharacter3('');
         setWeakness('');
-        setTraits('');
+        setDogCharacter3('');
         }
       } catch (error) {
       console.error('Error fetching dog data:', error);
