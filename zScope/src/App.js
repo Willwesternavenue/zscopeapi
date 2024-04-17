@@ -20,6 +20,23 @@ function App() {
     'ゴールデン・レトリバー': '/Dogs/Gretriever.jpg',
   };
   
+  const zodiacSigns = [
+    { label: "牡羊座 (3/21-4/19)", value: "牡羊座" },
+    { label: "牡牛座 (4/20-5/20)", value: "牡牛座" },
+    { label: "双子座 (5/21-6/21)", value: "双子座" },
+    { label: "蟹座 (6/22-7/22)", value: "蟹座" },
+    { label: "獅子座 (7/23-8/22)", value: "獅子座" },
+    { label: "乙女座 (8/23-9/22)", value: "乙女座" },
+    { label: "天秤座 (9/23-10/23)", value: "天秤座" },
+    { label: "蠍座 (10/24-11/22)", value: "蠍座" },
+    { label: "射手座 (11/23-12/21)", value: "射手座" },
+    { label: "山羊座 (12/22-1/19)", value: "山羊座" },
+    { label: "水瓶座 (1/20-2/18)", value: "水瓶座" },
+    { label: "魚座 (2/19-3/20)", value: "魚座" }
+  ];
+  
+
+
   const [mySign, setMySign] = useState('');
   const [partnerSign, setPartnerSign] = useState('');
   const [childSign, setChildSign] = useState('');
@@ -172,10 +189,11 @@ function App() {
         <label>お父さんの星座：</label>
         <select value={mySign} onChange={(e) => handleSignChange(e, setMySign)}>
           <option value="">選択してください</option>
-          {['牡羊座', '牡牛座', '双子座', '蟹座', '獅子座', '乙女座', '天秤座', '蠍座', '射手座', '山羊座', '水瓶座', '魚座'].map((sign, index) => (
-            <option key={index} value={sign}>{sign}</option>
+          {zodiacSigns.map((sign, index) => (
+            <option key={index} value={sign.value}>{sign.label}</option>
           ))}
         </select>
+
       {dogType1 && (
         <p><br /><b>お父さんの星座を<br></br>犬に例えると:</b><br></br> {dogType1}</p>
       )}
@@ -191,8 +209,8 @@ function App() {
       <label>お母さんの星座：</label>
         <select value={partnerSign} onChange={(e) => handleSignChange(e, setPartnerSign)}>
           <option value="">選択してください</option>
-          {['牡羊座', '牡牛座', '双子座', '蟹座', '獅子座', '乙女座', '天秤座', '蠍座', '射手座', '山羊座', '水瓶座', '魚座'].map((sign, index) => (
-            <option key={index} value={sign}>{sign}</option>
+          {zodiacSigns.map((sign, index) => (
+            <option key={index} value={sign.value}>{sign.label}</option>
           ))}
         </select>
         {dogType2 && (<p><br /><b>お母さんの星座を<br></br>犬に例えると</b>:<br></br> {dogType2}</p>)}
@@ -213,11 +231,10 @@ function App() {
           <p>＜内面を知るには星座を選択＞</p>
           <label>あなたの星座：</label>
               <select value={childSign} onChange={(e) => handleSignChange(e, setChildSign)}>
-                <option value="">選択してください</option>
-                {['牡羊座', '牡牛座', '双子座', '蟹座', '獅子座', '乙女座', '天秤座', '蠍座', '射手座', '山羊座', '水瓶座', '魚座'].map((sign, index) => (
-                  <option key={index} value={sign}>{sign}</option>
-                ))}
-              </select>
+              {zodiacSigns.map((sign, index) => (
+            <option key={index} value={sign.value}>{sign.label}</option>
+          ))}
+        </select>
               <br />
       {childSign && dogCharacter3 && (
         <>
