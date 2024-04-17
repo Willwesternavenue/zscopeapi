@@ -175,11 +175,11 @@ function App() {
           ))}
         </select>
       {dogType1 && (
-        <p><br /><b>お父さんの星座を犬に例えると:</b><br></br> {dogType1}</p>
+        <p><br /><b>お父さんの星座を<br></br>犬に例えると:</b><br></br> {dogType1}</p>
       )}
       {dogCharacter1 && (
           <>
-        <p><b>性格を一言でいうと:</b><br></br> {dogCharacter1}</p>
+        <p><b>こんな性格:</b><br></br> {dogCharacter1}</p>
         <img src={dogImages[dogType1]} alt={`画像：${dogType1}`} className="dog-image" />
         </>
       )}
@@ -193,10 +193,10 @@ function App() {
             <option key={index} value={sign}>{sign}</option>
           ))}
         </select>
-        {dogType2 && (<p><br /><b>お母さんの星座を犬に例えると</b>:<br></br> {dogType2}</p>)}
+        {dogType2 && (<p><br /><b>お母さんの星座を<br></br>犬に例えると</b>:<br></br> {dogType2}</p>)}
       {dogCharacter2 && (
           <>
-        <p><b>性格を一言でいうと:</b><br></br> {dogCharacter2}</p>
+        <p><b>こんな性格:</b><br></br> {dogCharacter2}</p>
         <img src={dogImages[dogType2]} alt={`画像：${dogType2}`} className="dog-image" />
         </>
       )}

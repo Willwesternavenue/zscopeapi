@@ -28,8 +28,8 @@ select {
 .dog-image {
   width: 100%; /* 画像の幅を親要素に合わせる */
   height: auto; /* 高さを自動調整してアスペクト比を保持 */
-  max-width: 200px; /* 画像の最大幅を制限 */
-  margin: 0 auto; /* 画像を中央揃え */
+  max-width: 100%; /* 画像の最大幅を制限 */
+  margin-top: auto; /* 画像を中央揃え */
 }
 
 @media (min-width: 768px) {
@@ -69,10 +69,13 @@ button:hover {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap; /* コンテンツが折り返すように設定 */
+  align-items: stretch; /* コンテンツの高さを揃える */
 }
 
 .sign-section {
   flex: 1 1 50%; /* それぞれのセクションが画面の半分の幅を取るように設定 */
+  display: flex;
+  flex-direction: column;
   padding: 10px;
   box-sizing: border-box; /* パディングを幅に含める */
 }
@@ -81,9 +84,6 @@ button:hover {
   text-align: center;
   margin-top: 20px;
 }
-
-
-
 
 .error {
   color: red; /* Change error text color */
