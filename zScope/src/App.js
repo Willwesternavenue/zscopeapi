@@ -274,7 +274,7 @@ function App() {
               <br />
       {childSign && dogCharacter3 && weakness &&(
         <>
-        <p><b>zScope分類名: </b><br></br>{traits || '特徴なし'}<br /><b>{dogType3}</b></p>
+        <p><b>【zScope分類名】 </b><br></br>{traits || '特徴なし'}<br /><b>{dogType3}</b></p>
         <p><b>あなたの性格は: </b><br></br> {dogCharacter3}</p>
         <p><b>あなたの弱点は: </b><br></br> {weakness}</p>
         </>
@@ -284,7 +284,9 @@ function App() {
       )}
     </div>
       <SocialShare />
-      <button onClick={handleReload} className="reload-button">TOPへ</button>
+      <button onClick={handleReload} className="reload-button">TOP</button>
+      <a href="https://farscope.vercel.app/" class="english-button">English</a>
+
       <p>zScope 2024. All Rights Reserved.</p>
   </div>
   );
