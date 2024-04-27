@@ -25,7 +25,7 @@ function SocialShare() {
         <TwitterIcon size={50} round />
       </TwitterShareButton>
       <button onClick={copyToClipboard} className="copy-link-button">
-        <b>{copied ? 'Copied!' : '共有リンク作成'}</b>
+        <b>{copied ? 'Copied!' : '共有リンク'}</b>
       </button>
 
       <a href="https://line.me/R/msg/text/?『わんこ星座占い』あなたの星座を犬に例えると？ 結果は⇒ https://zscopeapi-git-main-willwesternavenues-projects.vercel.app/"
